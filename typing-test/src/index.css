@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.words-area {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    flex-wrap: wrap;
+    margin: 10px auto;
+    padding: 12px 10px;
+    background-image: radial-gradient( circle 465px at -15.1% -25%,  rgba(17,130,193,1) 0%, rgba(67,166,238,1) 49%, rgba(126,203,244,1) 90.2% );
+}
+
+.activeWord {
+    font-size: 40px;
+    background: yellow;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.deactive-word {
+    padding: 5px 8px;
+    font-size: 32px;
+    font-family: 'Gill Sans', 'Gill Sans MT', "Calibri", 'Trebuchet MS', sans-serif;
+}
+
+
+
+/* ------ TYPING AREA -------- */
+.typing-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 10px auto;
+    padding: 12px 10px;
+    border-radius: 8px;
+    background: #A7C8E7;
+}
+
+.typing-area input {
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 6px 5px;
+    width: 50%;
+    height: 53px;
+    border: none;
+    border-radius: 8px;
+}
+
+.count {
+    background: #3c4d5c;
+    color: white;
+    font-size: 35px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    margin: 0 4px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.typing-area button {
+    font-size: 30px;
+    height: 50px;
+    cursor: pointer;
+    background: #428bca;
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: .7s ;
+}
+button:hover{
+    background: #163c5d;
+}
