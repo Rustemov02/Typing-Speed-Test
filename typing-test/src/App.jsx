@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import Count from './Count'
 import CircularProgress from '@mui/material/CircularProgress';
-import { Dialog, DialogTitle } from '@mui/material/';
+import { Dialog} from '@mui/material/';
 
-export default function Test() {
+export default function App() {
   const [input, setInput] = useState('');
-  // const words = ['apple', 'john', 'banana', 'qwerty', 'programming', 'apple2', 'john2', 'banana2', 'qwerty2', 'programming2', 'apple3', 'john3', 'banana3', 'qwerty3', 'programming3']; // 50 kelimenin tamamı burada
   const [words, setWords] = useState([])
   const [countActiveWord, setCountActiveWord] = useState(0);
   const [activeWord, setActiveWord] = useState(0);
   const [wordColors, setWordColors] = useState({});
-  const [timer, setTimer] = useState(59);
+  const [timer, setTimer] = useState(3);
   const [isActiveSpace, setActiveSpace] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const wordsPerPage = 12; // Sayfa başına gösterilecek kelime sayısı
   const [currentPage, setCurrentPage] = useState(0); // Geçerli sayfa indeksi
   const [showCircular, setShowCircular] = useState(true)
-
+  let countdown
 
   const fetchWords = () => {
     fetch('https://random-word-api.herokuapp.com/word?number=100')
       .then(response => response.json())
       .then(data => setWords(data))
-      .catch(error => console.error('Error fetching words:', error));
+      .catch((error) => alert("there may be a problem with your internet", error));
   };
-
-
-
-
+ 
   const handleChange = e => {
     setInput(e.target.value);
     if (e.nativeEvent.data === ' ') {
@@ -52,10 +48,17 @@ export default function Test() {
   };
 
   const startCountdown = () => {
-    setInterval(() => {
-      setTimer(prevState => prevState - 1);
+    countdown = setInterval(() => {
+      setTimer(prevState => {
+        if(prevState === 0){
+          clearInterval(countdown)
+          return prevState
+        }else {
+          return prevState - 1
+        }
+      });
     }, 1000);
-  };
+  }; 
 
   const handleKeyPress = e => {
     if (e.key == ' ' && !isActiveSpace) {
@@ -65,13 +68,20 @@ export default function Test() {
     }
   };
 
+  // FOR DIALOG 
+  const [open, setOpen] = useState(false)
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload();
+  };
+
+  //  GAME OVER 
   useEffect(() => {
     if (timer === 0) {
-      alert(`Game over, your correct: ${correct}, wrong: ${wrong}`);
-      window.location.reload();
+      setOpen(true) 
     }
   }, [timer]);
-
+ 
   useEffect(() => {
     if (countActiveWord >= (currentPage + 1) * wordsPerPage) {
       setCurrentPage(prevPage => prevPage + 1);
@@ -87,13 +97,7 @@ export default function Test() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // FOR DIALOG 
-  const [open, setOpen] = useState(false)
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+ 
   const renderWords = () => {
     const startIndex = currentPage * wordsPerPage;
     const endIndex = startIndex + wordsPerPage;
@@ -123,15 +127,18 @@ export default function Test() {
 
       <div className='typing-area'>
         <input type="text" value={input} onChange={handleChange} onKeyPress={handleKeyPress} />
+        <div style={{display : 'flex',flexDirection : "row",margin : '5px',alignItems: 'center'}}>
         <Count timer={timer} />
-        <button onClick={() => window.location.reload()}>Restart</button>
+        <button className='restart-button' onClick={() => window.location.reload()}>Restart</button>
+        </div>
       </div>
 
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Result</DialogTitle>
+      <Dialog open={open} onClose={handleClose} className='dialog'>
+        <h2>Result</h2>
         <p>Correct : {correct}</p>
         <p>Wrong : {wrong}</p>
+        <button className='restart-button dialog-button' onClick={()=>window.location.reload()}>Restart</button>
       </Dialog>
     </div>
   );

@@ -19,10 +19,11 @@
     align-items: center;
     justify-content: center;
     width: 60%;
+    min-width: 300px;
     flex-wrap: wrap;
     margin: 10px auto;
     padding: 12px 10px;
-    background-image: radial-gradient( circle 465px at -15.1% -25%,  rgba(17,130,193,1) 0%, rgba(67,166,238,1) 49%, rgba(126,203,244,1) 90.2% );
+    background-image: radial-gradient(circle 465px at -15.1% -25%, rgba(17, 130, 193, 1) 0%, rgba(67, 166, 238, 1) 49%, rgba(126, 203, 244, 1) 90.2%);
 }
 
 .activeWord {
@@ -46,11 +47,13 @@
     align-items: center;
     justify-content: center;
     width: 60%;
+    min-width: 300px;
     margin: 10px auto;
     padding: 12px 10px;
     border-radius: 8px;
     background: #A7C8E7;
 }
+
 
 .typing-area input {
     font-size: 25px;
@@ -68,12 +71,13 @@
     font-size: 35px;
     padding: 5px 8px;
     border-radius: 5px;
+    text-align: center;
     margin: 0 4px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
 
-.typing-area button {
+.restart-button {
     font-size: 30px;
     height: 50px;
     cursor: pointer;
@@ -83,8 +87,52 @@
     padding: 3px 8px;
     border-radius: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    transition: .7s ;
+    transition: .7s;
 }
-button:hover{
+
+button:hover {
     background: #163c5d;
+}
+
+@media only screen and (max-width : 700px) {
+    .typing-area {
+        flex-direction: column;
+    }
+
+    .typing-area input {
+        width: 100%;
+    }
+
+}
+
+/* ----- DIALOG ----- */
+.dialog {
+    margin: auto;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dialog h2 {
+    background-color: coral;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    padding: 5px 20px;
+
+}
+
+.dialog p {
+    text-align: center;
+    font-size: 25px;
+    padding: 0 20px;
+    width: 300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dialog-button {
+    width: 200px;
+    margin: 10px auto;
+    height: 40px;
 }
