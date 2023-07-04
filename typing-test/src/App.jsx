@@ -9,7 +9,7 @@ export default function App() {
   const [countActiveWord, setCountActiveWord] = useState(0);
   const [activeWord, setActiveWord] = useState(0);
   const [wordColors, setWordColors] = useState({});
-  const [timer, setTimer] = useState(3);
+  const [timer, setTimer] = useState(59);
   const [isActiveSpace, setActiveSpace] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
